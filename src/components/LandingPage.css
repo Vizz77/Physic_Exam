@@ -1,0 +1,95 @@
+/* Styles for the landing page component */
+
+.landing-page {
+  /* full-page layout with soft gradient background */
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fade-in 1s ease-in-out;
+}
+
+/* gradient text effect inspired by Apple */
+.hero h1 {
+  background: linear-gradient(to right, #606c88, #3f4c6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.browse-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #0077ff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.browse-btn:hover {
+  background-color: #005dd1;
+}
+
+.topics {
+  width: 100%;
+  max-width: 800px;
+}
+
+.topics h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.topics ul {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  /* responsive two-column layout */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.topics li {
+  padding: 1rem;
+  /* frosted glass look */
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #000;
+  opacity: 0;
+  animation: slide-up 0.5s forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

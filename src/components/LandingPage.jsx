@@ -1,5 +1,7 @@
 // src/components/LandingPage.jsx
 import React from 'react';
+// Import component specific styles
+import './LandingPage.css'
 
 export default function LandingPage({ onBrowse }) {
   const topics = [
@@ -22,39 +24,23 @@ export default function LandingPage({ onBrowse }) {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center p-8 space-y-10 bg-gray-50">
-      
-      {/* Hero */}
-      <div className="text-center max-w-xl space-y-4">
-        <h1 className="text-4xl font-extrabold">Benvenuto in Fisica</h1>
-        <p className="text-lg text-gray-700">
-          Trova qui i testi d'esame con soluzioni!
-        </p>
-        <button
-          onClick={onBrowse}
-          className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Sfoglia Esami ↓
-        </button>
+    <section className="landing-page">
+      {/* Hero section with intro text */}
+      <div className="hero">
+        <h1>Benvenuto in Fisica</h1>
+        <p>Trova qui i testi d'esame con soluzioni!</p>
+        <button onClick={onBrowse} className="browse-btn">Sfoglia Esami </button>
       </div>
 
       {/* Lista Argomenti Esame */}
-      <div className="w-full max-w-3xl">
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Lista Argomenti Esame
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="topics">
+        <h2>Lista Argomenti Esame</h2>
+        <ul> 
           {topics.map((topic, idx) => (
-            <div
-              key={idx}
-              className="p-4 border border-gray-200 rounded-lg shadow-sm bg-white"
-            >
-              {topic}
-            </div>
+            <li key={idx}>{topic}</li>
           ))}
-        </div>
+        </ul>
       </div>
-
     </section>
   );
 }
