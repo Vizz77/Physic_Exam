@@ -1,6 +1,16 @@
-# React + Vite
+# Exam Archive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains a small web application that serves as an archive of physics exam topics. The site was created by a student as a personal project to collect exercises and short notes in a single place. It is built with **React** and **Vite** to keep the setup lightweight and easy to maintain.
+
+## Purpose
+
+The goal of the application is to provide an easy way to browse common physics exam questions and related material. It can be expanded to host additional resources or solutions over time.
+
+---
+
+## React + Vite Template
+
+The project started from the official Vite template which provides a minimal setup to get React working with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 
