@@ -26,11 +26,11 @@ export default function LandingPage({ onBrowse }) {
   return (
     <section className="landing-page">
       {/* Hero section with intro text */}
-      <div className="hero">
+      <header className="page-header">
         <h1>Benvenuto in Fisica</h1>
         <p>Trova qui i testi d'esame con soluzioni!</p>
-        <button onClick={onBrowse} className="browse-btn">Sfoglia Esami </button>
-      </div>
+        <button onClick={onBrowse} className="browse-btn">Sfoglia Esami</button>
+      </header>
 
       {/* Lista Argomenti Esame */}
       <div className="topics">
