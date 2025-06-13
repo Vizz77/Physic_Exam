@@ -1,6 +1,14 @@
 /* CRA:             process.env.PUBLIC_URL
-   Vite (if needed):import.meta.env.BASE_URL                                   */
-const BASE = `${process.env.PUBLIC_URL}/pdfs`;
+   Vite (if needed):import.meta.env.BASE_URL
+   Custom:          VITE_PDF_BASE (for explicit path) */
+
+const rootPath =
+  (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_PDF_BASE) ||
+  (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ||
+  process.env.PUBLIC_URL ||
+  '';
+
+const BASE = `${rootPath.replace(/\/$/, '')}/pdfs`;
 
 /**
  * Pure convenience: list only the stems once.
@@ -46,11 +54,6 @@ const stems = [
 
 const pdfMap = {};
 
-// produce:
-//   pdfMap["algebra_2023"] = {
-//     exam:     ".../algebra_2023_exam.pdf",
-//     solution: ".../algebra_2023_solution.pdf"
-//   }
 stems.forEach(stem => {
   pdfMap[stem] = {
     exam:     `${BASE}/compito_${stem}.pdf`,    
