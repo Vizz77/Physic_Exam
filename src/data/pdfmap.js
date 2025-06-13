@@ -1,14 +1,13 @@
-/* CRA:             process.env.PUBLIC_URL
-   Vite (if needed):import.meta.env.BASE_URL
-   Custom:          VITE_PDF_BASE (for explicit path) */
+/*
+ * Compute the directory containing the exam PDFs.
+ *
+ * Originally the path was built using environment variables so the app
+ * could be deployed under different base URLs. For this simplified
+ * version we avoid any environment configuration and assume the PDFs are
+ * served directly from the `/pdf` folder in the public directory.
+ */
 
-const rootPath =
-  (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_PDF_BASE) ||
-  (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ||
-  process.env.PUBLIC_URL ||
-  '';
-
-const BASE = `${rootPath.replace(/\/$/, '')}/pdfs`;
+const BASE = '/pdf';
 
 /**
  * Pure convenience: list only the stems once.
