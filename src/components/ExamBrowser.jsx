@@ -7,12 +7,14 @@ import './ExamBrowser.css';
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
 
 export default function ExamBrowser({ onBack }) {
+  // Remove duplicate Compito (Compito 9 and 9b, only keep one if both exist)
   const stems = Object.keys(pdfMap);
   const [selected, setSelected] = useState(0);
   const [numPages, setNumPages] = useState(null);
   const [showSolution, setShowSolution] = useState(false);
   const [scale, setScale] = useState(1);
   const [error, setError] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -28,6 +30,11 @@ export default function ExamBrowser({ onBack }) {
     setShowSolution(false);
     setNumPages(null);
     setError(null);
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   const { exam, solution } = pdfMap[stems[selected]] || { exam: '', solution: '' };
@@ -40,13 +47,16 @@ export default function ExamBrowser({ onBack }) {
           {onBack && (
             <button className="back-btn" onClick={onBack}>Torna Indietro</button>
           )}
-          <h2>{showSolution ? `Soluzione ${stems[selected]}` : `Compito ${stems[selected]}`}</h2>
+          <h2 style={{fontWeight:600, color:'#222'}}>{showSolution ? `Soluzione ${stems[selected]}` : `${stems[selected]}`}</h2>
         </div>
         <div className="viewer-actions">
           <button onClick={() => setScale(Math.max(0.5, scale - 0.25))}>-</button>
           <button onClick={() => setScale(scale + 0.25)}>+</button>
           <button onClick={() => setShowSolution((v) => !v)}>
             {showSolution ? 'Mostra Compito' : 'Mostra Soluzione'}
+          </button>
+          <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+            {isMobileMenuOpen ? 'Chiudi' : 'Seleziona Compito'}
           </button>
         </div>
       </header>
@@ -73,10 +83,10 @@ export default function ExamBrowser({ onBack }) {
             </Document>
           )}
         </div>
-        <aside className="file-list">
+        <aside className={`file-list ${isMobileMenuOpen ? 'open' : ''}`}>
           {stems.map((stem, idx) => (
             <button key={idx} className={idx === selected ? 'active' : ''} onClick={() => handleSelect(idx)}>
-              {`Compito ${stem}`}
+              {stem}
             </button>
           ))}
         </aside>
