@@ -3,8 +3,8 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import pdfMap from '../data/pdfmap';
 import './ExamBrowser.css';
 
-// Use the official CDN for the worker (works everywhere, including GitHub Pages)
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+// Use a relative path for the worker (works locally and on GitHub Pages)
+pdfjs.GlobalWorkerOptions.workerSrc = `${import.meta.env.BASE_URL}pdf.worker.min.js`;
 
 function useIsMobile() {
   // Simple hook to detect mobile/small screen
